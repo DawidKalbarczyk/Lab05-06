@@ -38,7 +38,7 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Set up JDK 24
         uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216
@@ -54,6 +54,6 @@ jobs:
       - name: Check SonarCloud Quality Gate
         uses: SonarSource/sonarcloud-github-action@v1
         with:
-          organization: your_organization
-          projectKey: your_project_key
+          organization: dawidkalbarczyk
+          projectKey: DawidKalbarczyk_Lab05-06
           token: ${{ secrets.SONAR_TOKEN }}
