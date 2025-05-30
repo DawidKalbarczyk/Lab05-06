@@ -57,3 +57,9 @@ jobs:
           organization: dawidkalbarczyk
           projectKey: DawidKalbarczyk_Lab05-06
           token: ${{ secrets.SONAR_TOKEN }}
+      - name: Quality Gate Check
+        uses: SonarSource/sonarcloud-github-action@v1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: 'qualitygate'
