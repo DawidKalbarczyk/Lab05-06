@@ -8,7 +8,6 @@ public class KalkulatorTest {
     @Test
     void testDodaj() {
         Kalkulator kalkulator = new Kalkulator();
-        int wynik = kalkulator.dodaj(2,3);
-        assertEquals(5);
+        assertEquals(5, kalkulator.dodaj(2,3));
     }
 }
