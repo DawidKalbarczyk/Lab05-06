@@ -24,8 +24,8 @@ jobs:
       - name: Copy JAR to server
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{secrets.VM_HOST }}
-          username: ${{secrets.VM_USER }}
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
           port: 22
           source: target/demo1-0.0.1-SNAPSHOT.jar
