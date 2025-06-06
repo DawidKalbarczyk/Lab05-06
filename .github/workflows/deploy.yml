@@ -49,5 +49,6 @@ jobs:
           port: 22
           script: |
             pkill -f 'java.*\.jar' || true
-            nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 & exit 0
+            nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 & < /dev/null &
+            disown
             echo "Started"
