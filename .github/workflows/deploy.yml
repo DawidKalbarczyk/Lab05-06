@@ -27,7 +27,7 @@ jobs:
           username: ${{secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
           port: 22
-          source: rarget/*.jar
+          source: target/*.jar
           target: /home/${{ secrets.VM_USER }}/app/
 
       - name: Restart app on server
