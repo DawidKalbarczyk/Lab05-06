@@ -54,6 +54,7 @@ jobs:
             JAR=/home/${{ secrets.VM_USER }}/app/target/demo1-0.0.1-SNAPSHOT.jar
             echo "Starting new Java process with $JAR"
             nohup setsid java -jar "$JAR" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 < /dev/null &
+            disown
             sleep 2
             echo "Process list:"
             pgrep -af 'java.*\.jar' || echo "No Java process found"
