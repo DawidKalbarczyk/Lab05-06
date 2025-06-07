@@ -52,7 +52,7 @@ jobs:
             pkill -f 'java.*\.jar' || true
             JAR=$(ls /home/${{ secrets.VM_USER }}/app/*.jar | head -n 1)
             
-            tmux new-session -d -s myapp "java -jar "$JAR" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1"
+            tmux new-session -d -s myapp -- bash -c "java -jar \"$JAR\" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1"
 
             sleep 2
             if tmux has-session -t myapp 2>/dev/null && pgrep -f 'java.*\.jar' > /dev/null; then
