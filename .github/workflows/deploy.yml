@@ -39,24 +39,3 @@ jobs:
           port: 22
           source: target/demo1-0.0.1-SNAPSHOT.jar
           target: /home/${{ secrets.VM_USER }}/app/
-
-      - name: Restart app on server
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ secrets.VM_USER }}
-          key: ${{ secrets.VM_SSH_KEY }}
-          port: 22
-          script: |
-            echo "Killing old Java process..."
-            pkill -f 'java.*\.jar' || true
-            JAR=$(ls /home/${{ secrets.VM_USER }}/app/*.jar | head -n 1)
-            
-            tmux new-session -d -s myapp -- bash -c "java -jar \"$JAR\" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1"
-
-            sleep 2
-            if tmux has-session -t myapp 2>/dev/null && pgrep -f 'java.*\.jar' > /dev/null; then
-              echo "App started Successfully."
-            else
-              echo "Failed to start app"
-            fi
