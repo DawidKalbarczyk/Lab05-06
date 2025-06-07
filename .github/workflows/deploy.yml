@@ -51,10 +51,11 @@ jobs:
             echo "Killing old Java process..."
             pkill -f 'java.*\.jar' || true
             JAR=$(ls /home/${{ secrets.VM_USER }}/app/*.jar | head -n 1)
-            (setsid nohup java -jar "$JAR" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 < /dev/null &) >/dev/null 2>&1
+            
+            tmux new-session -d -s myapp "java -jar "$JAR" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1"
 
             sleep 2
-            if pgrep -f 'java.*\.jar' > /dev/null; then
+            if tmux has-session -t myapp 2>/dev/null && pgrep -f 'java.*\.jar' > /dev/null; then
               echo "App started Successfully."
             else
               echo "Failed to start app"
