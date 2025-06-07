@@ -48,6 +48,9 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           port: 22
           script: |
+            echo "Killing old Java process..."
             pkill -f 'java.*\.jar' || true
-            nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 & exit 0
-            echo "Started"
+            nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 &
+
+            sleep 2
+            pgrep -f 'java.*\.jar && echo " App started Succesfully." || echo "Failed to start app"
