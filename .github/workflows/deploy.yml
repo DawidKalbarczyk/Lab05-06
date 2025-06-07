@@ -53,4 +53,8 @@ jobs:
             nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 &
 
             sleep 2
-            pgrep -f 'java.*\.jar' && echo " App started Succesfully." || echo "Failed to start app"
+             if pgrep -f 'java.*\.jar' > /dev/null; then
+              echo "App started Successfully."
+            else
+              echo "Failed to start app"
+            fi
