@@ -50,7 +50,7 @@ jobs:
           script: |
             echo "Killing old Java process..."
             pkill -f 'java.*\.jar' || true
-            nohup java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 &
+            setsid java -jar /home/${{ secrets.VM_USER }}/app/*.jar > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 &
 
             sleep 2
             if pgrep -f 'java.*\.jar' > /dev/null; then
