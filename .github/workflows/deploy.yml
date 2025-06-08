@@ -62,10 +62,10 @@ jobs:
           port: 22
           script: |
             JAR=/home/${{ secrets.VM_USER }}/app/target/demo1-0.0.1-SNAPSHOT.jar
-            echo "Starting new Java process with $JAR"
+            echo "Startuje SpringBoot z $JAR"
             nohup setsid java -jar "$JAR" > /home/${{ secrets.VM_USER }}/app/log.txt 2>&1 < /dev/null &
             sleep 2
             echo "Process list:"
             pgrep -af 'java.*\.jar' || echo "No Java process found"
-            echo "Last 10 log lines:"
+            echo "Ostatnie 10 linii logu:"
             tail -n 10 /home/${{ secrets.VM_USER }}/app/log.txt || true
