@@ -8,7 +8,7 @@ public class SampleController {
     @GetMapping("/test")
     public String someMethod()
     {
-        return "testowyugabuga";
+        return "testowy";
     }
     @GetMapping("/GetUserData")
     public UserData metoda1()
