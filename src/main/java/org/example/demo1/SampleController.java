@@ -8,12 +8,12 @@ public class SampleController {
     @GetMapping("/test")
     public String someMethod()
     {
-        return "testowy";
+        return "testowy123414214";
     }
     @GetMapping("/GetUserData")
     public UserData metoda1()
     {
-        return new UserData(1, "Jan", "Kowalski");
+        return new UserData(1, "Jan", "Kowalski3123213");
     }
 
 }
